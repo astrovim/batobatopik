@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Bato Bato Pik!</title>
+        <meta charset=UTF-8">
+    </head>
+    <body>
+        <script>
+            let weapon = ['rock','paper','scissors'];
+            
+            let computerPlay = () => weapon[Math.floor(Math.random()*3)];
+            
+            function userPlay() {
+                let userWeapon = prompt('Choose your weapon! (Rock, Paper or Scissors)');
+
+                if (userWeapon == ''){
+                    alert('You cant go unarmed!')
+                    return userPlay();
+                } else if(userWeapon==null){
+                    alert('You have forfeited.');
+                    return 'end';
+                }
+
+                return fight(userWeapon.toLowerCase(), computerPlay());
+            }
+
+            function fight(playerWeapon, computerWeapon){
+                switch(true){
+                    case (playerWeapon == 'rock' && computerWeapon == 'paper'):
+                        alert('You Lose! ' + computerWeapon + ' beats ' + playerWeapon + '.');rematch();
+                    break;
+                    case (playerWeapon == 'paper' && computerWeapon == 'scissors'):
+                        alert('You Lose! ' + computerWeapon + ' beats ' + playerWeapon + '.');rematch();
+                    break;
+                    case (playerWeapon == 'scissors' && computerWeapon == 'rock'):
+                        alert('You Lose! ' + computerWeapon + ' beats ' + playerWeapon + '.');rematch();
+                    break;
+                    case (playerWeapon == 'paper' && computerWeapon == 'rock'):
+                        alert('You Win! ' + playerWeapon + ' beats ' + computerWeapon + '.');rematch();
+                    break;
+                    case (playerWeapon == 'scissors' && computerWeapon == 'paper'):
+                        alert('You Win! ' + playerWeapon + ' beats ' + computerWeapon + '.');rematch();
+                    break;
+                    case (playerWeapon == 'rock' && computerWeapon == 'scissors'):
+                        alert('You Win! ' + playerWeapon + ' beats ' + computerWeapon + '.');rematch();
+                    break;
+                    case (playerWeapon==computerWeapon):
+                        alert('Its a draw!');rematch();
+                    break;
+                    default:
+                        alert('Choose a proper weapon!'); userPlay();
+                }
+            }
+
+            let rematch = () => confirm('Want a rematch?') ? userPlay() : alert('GG. bye.');
+
+            userPlay();
+
+        </script>
+    </body>
+</html>
